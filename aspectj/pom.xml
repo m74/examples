@@ -9,9 +9,10 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <encoding>UTF-8</encoding>
         <java.version>11</java.version>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
 
     <dependencies>
@@ -31,9 +32,11 @@
     <build>
         <plugins>
             <plugin>
+                <!-- java 11 -->
                 <groupId>com.nickwongdev</groupId>
                 <artifactId>aspectj-maven-plugin</artifactId>
                 <version>1.12.6</version>
+                <!-- java 8 -->
                 <!--                                <groupId>org.codehaus.mojo</groupId>-->
                 <!--                                <artifactId>aspectj-maven-plugin</artifactId>-->
                 <!--                                <version>1.11</version>-->
@@ -45,28 +48,20 @@
                     </dependency>
                 </dependencies>
                 <configuration>
-                    <!--                    <source>${maven.compiler.source}</source>-->
-                    <!--                    <target>${maven.compiler.target}</target>-->
-                    <!--                    <complianceLevel>${maven.compiler.target}</complianceLevel>-->
-                    <complianceLevel>11</complianceLevel>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <complianceLevel>${maven.compiler.target}</complianceLevel>
                     <!--                    <showWeaveInfo>true</showWeaveInfo>-->
                     <!--                    <verbose>true</verbose>-->
                     <!--                    <Xlint>ignore</Xlint>-->
                     <!--                    <encoding>UTF-8</encoding>-->
+                    <!--                    <aspectLibraries>-->
+                    <!--                        <aspectLibrary>-->
+                    <!--                            <groupId>org.springframework</groupId>-->
+                    <!--                            <artifactId>spring-aspects</artifactId>-->
+                    <!--                        </aspectLibrary>-->
+                    <!--                    </aspectLibraries>-->
                 </configuration>
-                <!--                <configuration>-->
-                <!--                    <aspectLibraries>-->
-                <!--                        <aspectLibrary>-->
-                <!--                            <groupId>org.springframework</groupId>-->
-                <!--                            <artifactId>spring-aspects</artifactId>-->
-                <!--                        </aspectLibrary>-->
-                <!--                    </aspectLibraries>-->
-                <!--                    <complianceLevel>1.${java.version}</complianceLevel>-->
-                <!--                    <source>1.${java.version}</source>-->
-                <!--                    <target>1.${java.version}</target>-->
-                <!--                </configuration>-->
                 <executions>
                     <execution>
                         <goals>
