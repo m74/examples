@@ -8,6 +8,12 @@
     <artifactId>aspectj</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <parent>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <version>2.4.8</version>
+    </parent>
+
     <properties>
         <encoding>UTF-8</encoding>
         <java.version>11</java.version>
@@ -18,16 +24,41 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
             <version>${aspectj.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <!-- test -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test-autoconfigure</artifactId>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -61,23 +92,50 @@
                         <source>${maven.compiler.source}</source>
                         <target>${maven.compiler.target}</target>
                         <complianceLevel>${maven.compiler.target}</complianceLevel>
-                        <!--                    <showWeaveInfo>true</showWeaveInfo>-->
-                        <!--                    <verbose>true</verbose>-->
-                        <!--                    <Xlint>ignore</Xlint>-->
-                        <!--                    <encoding>UTF-8</encoding>-->
+                        <showWeaveInfo>true</showWeaveInfo>
+                        <verbose>true</verbose>
+                        <Xlint>ignore</Xlint>
+                        <encoding>${encoding}</encoding>
                         <!--                    <aspectLibraries>-->
                         <!--                        <aspectLibrary>-->
                         <!--                            <groupId>org.springframework</groupId>-->
                         <!--                            <artifactId>spring-aspects</artifactId>-->
                         <!--                        </aspectLibrary>-->
                         <!--                    </aspectLibraries>-->
+                        <excludes>
+                            <exclude>**/*.java</exclude>
+                        </excludes>
+                        <forceAjcCompile>true</forceAjcCompile>
+                        <sources/>
+                        <weaveDirectories>
+                            <weaveDirectory>${project.build.directory}/classes</weaveDirectory>
+                        </weaveDirectories>
                     </configuration>
                     <executions>
                         <execution>
+                            <id>default-compile</id>
+                            <phase>process-classes</phase>
                             <goals>
                                 <goal>compile</goal>
+                            </goals>
+                            <configuration>
+                                <weaveDirectories>
+                                    <weaveDirectory>${project.build.directory}/classes</weaveDirectory>
+                                </weaveDirectories>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>default-testCompile</id>
+                            <phase>process-test-classes</phase>
+                            <goals>
+                                <!-- use this goal to weave all your test classes -->
                                 <goal>test-compile</goal>
                             </goals>
+                            <configuration>
+                                <weaveDirectories>
+                                    <weaveDirectory>${project.build.directory}/test-classes</weaveDirectory>
+                                </weaveDirectories>
+                            </configuration>
                         </execution>
                     </executions>
                 </plugin>

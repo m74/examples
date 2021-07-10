@@ -1,17 +1,19 @@
 package ru.com.m74.examples.aspectj.test;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 
 @Aspect
+@Slf4j
 public class SimpleAspect {
 
-    @Around("execution(* ru.com.m74.examples.aspectj.test.AspectTestObject.test())")
+    @Around("execution(* ru.com.m74.examples.aspectj.test.SimpleObject.test())")
     public boolean advice(ProceedingJoinPoint pjp) throws Throwable {
-        System.out.println("!!! before");
+        log.info("!!! before");
         boolean result = (boolean) pjp.proceed();
-        System.out.println("!!! after");
+        log.info("!!! after");
         return !result;
     }
 

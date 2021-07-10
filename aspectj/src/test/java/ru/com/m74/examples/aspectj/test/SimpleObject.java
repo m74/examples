@@ -1,12 +1,15 @@
 package ru.com.m74.examples.aspectj.test;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author mixam
  * @since 10.01.18 22:21
  */
-public class AspectTestObject {
+@Slf4j
+public class SimpleObject {
     public boolean test() {
-        System.out.println("original value: " + false);
+        log.info("original value: {}", false);
         return false;
     }
 }
