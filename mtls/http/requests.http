@@ -1,0 +1,8 @@
+
+curl -k --cert-type P12 --cert client.p12:changeit https://localhost:8443 -v
+
+### ssl
+# curl -v https://localhost:8443
+GET https://localhost:8443
+
+###

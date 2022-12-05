@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/m74-example-kotlin
+    username: campus
+    password: campus
+  jackson:
+    serialization:
+      INDENT_OUTPUT: false
+    default-property-inclusion: non_null
+  sql:
+    init:
+      schema-locations: classpath:sql/schema.sql
+      mode: always
+logging:
+  level.org.springframework.jdbc.core: DEBUG
+
+

@@ -1,0 +1,2 @@
+spring.datasource.url: jdbc:tc:postgresql:12.7:///integration-tests-db
+spring.driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver

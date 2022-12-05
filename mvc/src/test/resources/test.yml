@@ -1,0 +1,3 @@
+spring.r2dbc:
+  url: r2dbc:tc:postgresql:///integration-tests-db?TC_IMAGE_TAG=12.7
+  driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
